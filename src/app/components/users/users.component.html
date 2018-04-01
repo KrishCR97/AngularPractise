@@ -1,0 +1,21 @@
+
+<form #userForm = "ngForm" (ngSubmit) = "onSubmit(userForm)">
+  <div class="form-group">
+    <label>FirstName</label>
+    <input [(ngModel)] = "user.name" type="text"
+    class="form-control" name="firstName" #userFirstName = "ngModel">
+  </div>
+  <div class="invalid-feedback">Username</div>
+  {{user.name}}
+  <button (click) ="addUser()" class = btn btn-sucess [disabled] = "!userForm.form.valid"> Add Users</button>
+</form>
+
+<ul *ngFor = "let user of users">
+  <li [ngStyle]="{'color': 'blue'}">{{user.name}}{{ user.lname}} </li>
+  <button (click) = "user.hide = !user.hide" >+</button>
+  <ul *ngIf = "enabled && !user.hide">
+    <li>{{user.address?.age}}</li>
+    <li>{{user.address?.street}}</li>
+    <li>{{user.address?.state}}</li>
+  </ul>
+</ul>
